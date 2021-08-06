@@ -1,5 +1,7 @@
 package com.jonathan.book.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class Publisher {
     @Column(nullable = false)
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "book_id",nullable = false,referencedColumnName = "id", foreignKey = @ForeignKey(name = "book_publisher_fk"))
     private Book book;

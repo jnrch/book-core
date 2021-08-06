@@ -1,5 +1,7 @@
 package com.jonathan.book.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -16,8 +18,19 @@ public class Author {
     private String lastName;
     private Date dayOfBirth;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books;
+
+    public Author() {
+    }
+
+    public Author(Long id, String firstName, String lastName, Date dayOfBirth) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dayOfBirth = dayOfBirth;
+    }
 
     public Long getId() {
         return id;
